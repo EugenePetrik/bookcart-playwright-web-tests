@@ -25,19 +25,13 @@ export default defineConfig({
 
   globalSetup: join(process.cwd(), 'src', 'tests', 'global-setup.ts'),
 
-  reporter: process.env.CI
-    ? [
-        [
-          'blob',
-          {
-            fileName: 'report.zip',
-          },
-        ],
-      ]
-    : [
-        ['list', { printSteps: true }],
-        ['html', { open: 'never' }],
-      ],
+  reporter: [
+    ['list', { printSteps: true }],
+    ['html', { open: 'never' }],
+    ['allure-playwright'],
+    [join(process.cwd(), 'src', 'utils', 'reporters', 'CustomReporterConfig.ts')],
+    [join(process.cwd(), 'src', 'utils', 'reporters', 'SlowStepReporter.ts')],
+  ],
 
   timeout: 30_000,
 
