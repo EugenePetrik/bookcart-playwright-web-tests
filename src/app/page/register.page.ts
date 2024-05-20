@@ -2,6 +2,7 @@ import { expect } from '@playwright/test';
 import baseConfig from '../../config/baseConfig';
 import { AppPage } from '../abstract.classes';
 import { type IRegisterUser } from '../../utils/types/user';
+import { step } from '../../utils/reporters/steps';
 
 export class RegisterPage extends AppPage {
   public readonly pagePath = '/register';
@@ -24,6 +25,7 @@ export class RegisterPage extends AppPage {
 
   private readonly registerButton = this.page.getByRole('button', { name: 'Register' });
 
+  @step()
   async expectLoaded(): Promise<void> {
     await Promise.all([
       await expect(this.firstNameInput).toBeVisible(),
@@ -37,6 +39,7 @@ export class RegisterPage extends AppPage {
     ]);
   }
 
+  @step()
   async registerUser(user: IRegisterUser): Promise<void> {
     const { firstName, lastName, userName, password, confirmPassword, gender } = user;
 
@@ -59,6 +62,7 @@ export class RegisterPage extends AppPage {
     await this.registerButton.click();
   }
 
+  @step()
   private async enterUsername(text: string): Promise<void> {
     await this.userNameInput.fill(text);
 

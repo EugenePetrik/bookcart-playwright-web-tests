@@ -1,5 +1,6 @@
 import { type Locator, expect } from '@playwright/test';
 import { Component } from '../../../abstract.classes';
+import { step } from '../../../../utils/reporters/steps';
 
 export class Book extends Component {
   private readonly titleLocator = this.root.locator('.card-title');
@@ -14,6 +15,7 @@ export class Book extends Component {
     super(root.page());
   }
 
+  @step()
   async expectLoaded(): Promise<void> {
     await Promise.all([
       await expect(this.titleLocator).toBeVisible(),
@@ -22,15 +24,18 @@ export class Book extends Component {
     ]);
   }
 
+  @step()
   async title() {
     return this.titleLocator.innerText();
   }
 
+  @step()
   async price() {
     const price = await this.priceLocator.innerText();
     return parseFloat(price.replace(/[^\d+.]/g, ''));
   }
 
+  @step()
   async details() {
     return {
       name: await this.title(),
@@ -38,11 +43,13 @@ export class Book extends Component {
     };
   }
 
+  @step()
   async select() {
     await this.expectLoaded();
     await this.titleLocator.click();
   }
 
+  @step()
   async addToCart() {
     await this.expectLoaded();
     await this.addToCardLocator.click();

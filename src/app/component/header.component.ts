@@ -1,5 +1,6 @@
 import { expect } from '@playwright/test';
 import { Component } from '../abstract.classes';
+import { step } from '../../utils/reporters/steps';
 
 export class Header extends Component {
   private readonly searchInput = this.page.getByPlaceholder('Search books or authors');
@@ -20,6 +21,7 @@ export class Header extends Component {
     .locator('mat-toolbar-row')
     .getByRole('button', { name: 'Login' });
 
+  @step()
   async expectLoaded(): Promise<void> {
     await Promise.all([
       await expect(this.searchInput).toBeVisible(),
@@ -27,29 +29,35 @@ export class Header extends Component {
     ]);
   }
 
+  @step()
   async selectBook(name: string): Promise<void> {
     await this.searchInput.fill(name);
     await this.searchOption.getByText(name).click();
     await expect(this.page).toHaveURL(/\/search\?item=/);
   }
 
+  @step()
   async clickOnCart(): Promise<void> {
     await this.cartButton.click();
   }
 
+  @step()
   async expectCartValueUpdated(): Promise<void> {
     const badgeCount = await this.cartValue.innerText();
     expect(Number(badgeCount)).toBeGreaterThan(0);
   }
 
+  @step()
   async clickOnUserMenu(): Promise<void> {
     await this.userMenu.click();
   }
 
+  @step()
   async expectLoginSuccess(username: string): Promise<void> {
     await expect(this.userMenu).toHaveText(username);
   }
 
+  @step()
   async clickLoginLink(): Promise<void> {
     await this.loginLink.click();
   }

@@ -1,5 +1,6 @@
 import { expect } from '@playwright/test';
-import { Component } from '../../../abstract.classes';
+import { Component } from '../abstract.classes';
+import { step } from '../../utils/reporters/steps';
 
 type Category =
   | 'All Categories'
@@ -14,6 +15,7 @@ export class Categories extends Component {
 
   private categories = this.root.locator('mat-list-item a');
 
+  @step()
   async expectLoaded(): Promise<void> {
     await Promise.all([
       await expect(this.root).toBeVisible(),
@@ -21,10 +23,12 @@ export class Categories extends Component {
     ]);
   }
 
+  @step()
   async select(name: Category): Promise<void> {
     await this.categories.getByText(name).click();
   }
 
+  @step()
   async expectCategories(names: string[]): Promise<void> {
     await expect(this.categories).toHaveText(names);
   }

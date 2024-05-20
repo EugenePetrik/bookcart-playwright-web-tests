@@ -1,10 +1,12 @@
 import { expect } from '@playwright/test';
 import { Component } from '../../../abstract.classes';
 import { Book } from './book.component';
+import { step } from '../../../../utils/reporters/steps';
 
 export class Books extends Component {
   private readonly booksLocator = this.page.locator('app-book-card');
 
+  @step()
   async expectLoaded(): Promise<void> {
     await Promise.all([
       await expect(this.booksLocator).not.toHaveCount(0),
@@ -12,6 +14,7 @@ export class Books extends Component {
     ]);
   }
 
+  @step()
   async getBooks(title: string): Promise<Book[]> {
     await this.expectLoaded();
     const books = await this.booksLocator.all();
@@ -27,6 +30,7 @@ export class Books extends Component {
     return filtered.map(book => new Book(book));
   }
 
+  @step()
   async getBooksDetails(): Promise<Awaited<ReturnType<Book['details']>>[]> {
     await this.expectLoaded();
     const books = await this.booksLocator.all();
