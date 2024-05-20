@@ -2,6 +2,7 @@ import { expect } from '@playwright/test';
 import { AppPage } from '../abstract.classes';
 import baseConfig from '../../config/baseConfig';
 import { step } from '../../utils/reporters/steps';
+import { type IUser } from '../../test_data/users';
 
 export class LoginPage extends AppPage {
   public readonly pagePath = '/login';
@@ -49,7 +50,8 @@ export class LoginPage extends AppPage {
   }
 
   @step()
-  async loginUser(username: string, password: string): Promise<void> {
+  async loginUser(userData: IUser): Promise<void> {
+    const { username, password } = userData;
     await this.enterUsername(username);
     await this.enterPassword(password);
     await this.clickOnLogInButton();

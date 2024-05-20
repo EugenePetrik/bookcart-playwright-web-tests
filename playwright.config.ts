@@ -26,7 +26,7 @@ export default defineConfig({
   globalSetup: join(process.cwd(), 'src', 'tests', 'global-setup.ts'),
 
   reporter: [
-    ['list', { printSteps: true }],
+    ['list', { printSteps: false }],
     ['html', { open: 'never' }],
     [join(process.cwd(), 'src', 'utils', 'reporters', 'CustomReporterConfig.ts')],
     [join(process.cwd(), 'src', 'utils', 'reporters', 'SlowStepReporter.ts')],

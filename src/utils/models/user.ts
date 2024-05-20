@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 import { type IRegisterUser } from '../types/user';
-import users, { type IUsersConfig } from '../../test_data/users';
+import users, { type IUser, type IUsersConfig } from '../../test_data/users';
 
 export function generateUser(): IRegisterUser {
   return {
@@ -13,7 +13,7 @@ export function generateUser(): IRegisterUser {
   };
 }
 
-export function getUser(user: keyof IUsersConfig): [string, string] {
+export function getUser(user: keyof IUsersConfig): IUser {
   const { username, password } = users[user];
-  return [username, password];
+  return { username, password };
 }

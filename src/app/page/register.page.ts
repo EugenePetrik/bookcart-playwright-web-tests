@@ -1,4 +1,4 @@
-import { expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import baseConfig from '../../config/baseConfig';
 import { AppPage } from '../abstract.classes';
 import { type IRegisterUser } from '../../utils/types/user';
@@ -60,6 +60,8 @@ export class RegisterPage extends AppPage {
     }
 
     await this.registerButton.click();
+
+    await test.info().attach('User data', { body: JSON.stringify(user, null, 4) });
   }
 
   @step()
