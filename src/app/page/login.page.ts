@@ -36,7 +36,7 @@ export class LoginPage extends AppPage {
   }
 
   @step()
-  async clickLoginButton(): Promise<void> {
+  async clickOnLogInButton(): Promise<void> {
     const responsePromise = this.page.waitForResponse(`${baseConfig.WEB_URL}/api/login`);
     await this.loginButton.click();
     await responsePromise;
@@ -52,6 +52,6 @@ export class LoginPage extends AppPage {
   async loginUser(username: string, password: string): Promise<void> {
     await this.enterUsername(username);
     await this.enterPassword(password);
-    await this.clickLoginButton();
+    await this.clickOnLogInButton();
   }
 }

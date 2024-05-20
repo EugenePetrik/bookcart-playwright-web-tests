@@ -58,7 +58,7 @@ export class Header extends Component {
   }
 
   @step()
-  async clickLoginLink(): Promise<void> {
+  async clickOnLogInLink(): Promise<void> {
     await this.loginLink.click();
   }
 }

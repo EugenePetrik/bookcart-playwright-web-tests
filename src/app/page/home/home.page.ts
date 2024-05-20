@@ -14,7 +14,7 @@ export class HomePage extends AppPage {
 
   private readonly books = new Books(this.page);
 
-  private readonly bookList = this.page.locator('card-deck-container');
+  private readonly bookList = this.page.locator('.card-deck-container');
 
   @step()
   async expectLoaded(): Promise<void> {
