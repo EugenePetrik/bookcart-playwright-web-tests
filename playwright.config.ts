@@ -11,7 +11,7 @@ if (process.env.ENV) {
 }
 
 export default defineConfig({
-  testDir: join(process.cwd(), 'tests'),
+  testDir: join(process.cwd(), 'src', 'tests'),
 
   fullyParallel: false,
 
@@ -28,7 +28,6 @@ export default defineConfig({
   reporter: [
     ['list', { printSteps: true }],
     ['html', { open: 'never' }],
-    ['allure-playwright'],
     [join(process.cwd(), 'src', 'utils', 'reporters', 'CustomReporterConfig.ts')],
     [join(process.cwd(), 'src', 'utils', 'reporters', 'SlowStepReporter.ts')],
   ],
@@ -71,13 +70,13 @@ export default defineConfig({
       name: 'chromium',
       use: {
         ...devices['Desktop Chrome'],
-        viewport: { width: 1920, height: 1080 },
         baseURL: baseConfig.WEB_URL,
       },
+      grep: [new RegExp('@ui')],
     },
 
     {
-      name: `API`,
+      name: 'api',
       use: {
         baseURL: baseConfig.API_URL,
       },

@@ -9,7 +9,9 @@
         "check-lint": "eslint . --ext ts",
         "check-all": "npm run check-format && npm run check-lint",
         "postinstall": "npx playwright install",
-        "test": "cross-env ENV=qa npx playwright test"
+        "test": "cross-env ENV=qa npx playwright test",
+        "test:ui": "npm t -- --project=chromium",
+        "report": "npx playwright show-report"
     },
     "keywords": [
         "typescript",
@@ -21,7 +23,6 @@
         "@types/node": "^20.12.12",
         "@typescript-eslint/eslint-plugin": "^7.9.0",
         "@typescript-eslint/parser": "^7.9.0",
-        "allure-playwright": "^2.15.1",
         "cross-env": "^7.0.3",
         "eslint": "^8.57.0",
         "eslint-config-airbnb-base": "^15.0.0",
