@@ -1,6 +1,6 @@
-import { baseFixture as test } from '../fixtures';
-import { getUser } from '../utils/getUser';
-import type { IUsersConfig } from '../test_data/users';
+import { baseFixture as test } from '../../fixtures';
+import { getUser } from '../../utils/getUser';
+import type { IUsersConfig } from '../../test_data/users';
 
 const loginTestData: Array<{ user: string; title: string }> = [
   {

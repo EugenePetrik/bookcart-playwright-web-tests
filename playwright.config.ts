@@ -73,13 +73,7 @@ export default defineConfig({
         baseURL: baseConfig.WEB_URL,
       },
       grep: [new RegExp('@ui')],
-    },
-
-    {
-      name: 'api',
-      use: {
-        baseURL: baseConfig.API_URL,
-      },
+      testDir: join(process.cwd(), 'src', 'tests', 'web'),
     },
   ],
 });
