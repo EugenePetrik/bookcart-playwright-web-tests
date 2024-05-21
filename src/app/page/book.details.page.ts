@@ -3,7 +3,7 @@ import { AppPage } from '../abstract.classes';
 import { step } from '../../utils/reporters/steps';
 
 export class BookDetails extends AppPage {
-  public readonly pagePath = '/';
+  public readonly pagePath = '/books/details';
 
   private readonly root = this.page.locator('mat-card-content');
 
@@ -22,6 +22,10 @@ export class BookDetails extends AppPage {
   public readonly addToWishlistButton = this.root.getByRole('button', {
     name: 'Add to Wishlist',
   });
+
+  async open(bookId: string): Promise<void> {
+    await super.open(`${this.pagePath}/${bookId}`);
+  }
 
   @step()
   async expectLoaded(): Promise<void> {
