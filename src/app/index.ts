@@ -18,10 +18,11 @@ export class Application extends PageHolder {
   public readonly searchPage = new SearchPage(this.page);
 
   async headlessLogin(data: { username: string; password: string }) {
+    const userData = await this.api.login.login(data);
     const {
       token,
       userDetails: { userId },
-    } = await this.api.login.login(data);
+    } = userData;
 
     await this.setDataToLocalStorage(userId, token);
 
@@ -29,6 +30,8 @@ export class Application extends PageHolder {
       body: JSON.stringify(data, null, 4),
       contentType: 'application/json',
     });
+
+    return userData;
   }
 
   async setDataToLocalStorage(userId: string, token: string) {

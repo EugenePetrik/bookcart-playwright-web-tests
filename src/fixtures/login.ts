@@ -2,7 +2,7 @@ import { test } from '@playwright/test';
 import { Application } from '../app';
 import { getUser } from '../utils/getUser';
 import { baseFixture } from './base';
-import type { IRegisterUser } from '../utils/types/user';
+import type { IRegisterUser, ILoginResponse } from '../utils/types/user';
 import UserBuilder from '../utils/models/UserBuilder';
 
 export type DefaultUserOption = {
@@ -37,7 +37,7 @@ export const loggedUserFixture = baseFixture.extend<
 });
 
 interface IUserContext {
-  user: { userModel: IRegisterUser };
+  user: { userModel: IRegisterUser; createdUser: ILoginResponse };
 }
 
 export const loggedInAsNewUserFixture = baseFixture.extend<IUserContext>({
@@ -51,9 +51,16 @@ export const loggedInAsNewUserFixture = baseFixture.extend<IUserContext>({
     });
 
     await app.api.user.register(userModel);
-    await app.headlessLogin({ username, password });
+
+    const createdUser = await app.headlessLogin({ username, password });
+
+    await test.info().attach('Logged in user data', {
+      body: JSON.stringify(createdUser, null, 4),
+      contentType: 'application/json',
+    });
+
     await app.homePage.open();
 
-    await use({ userModel });
+    await use({ userModel, createdUser });
   },
 });
