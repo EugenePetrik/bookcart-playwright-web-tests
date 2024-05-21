@@ -28,8 +28,8 @@ export default defineConfig({
   reporter: [
     ['list', { printSteps: false }],
     ['html', { open: 'never' }],
-    [join(process.cwd(), 'src', 'utils', 'reporters', 'CustomReporterConfig.ts')],
-    [join(process.cwd(), 'src', 'utils', 'reporters', 'SlowStepReporter.ts')],
+    // [join(process.cwd(), 'src', 'utils', 'reporters', 'CustomReporterConfig.ts')],
+    // [join(process.cwd(), 'src', 'utils', 'reporters', 'SlowStepReporter.ts')],
   ],
 
   timeout: 30_000,

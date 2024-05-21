@@ -4,5 +4,5 @@ export interface IRegisterUser {
   userName: string;
   password: string;
   confirmPassword: string;
-  gender: string;
+  gender: 'Male' | 'Female';
 }
