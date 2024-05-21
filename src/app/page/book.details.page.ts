@@ -23,8 +23,9 @@ export class BookDetails extends AppPage {
     name: 'Add to Wishlist',
   });
 
-  async open(bookId: string): Promise<void> {
-    await super.open(`${this.pagePath}/${bookId}`);
+  @step()
+  async open(id: string): Promise<void> {
+    await super.open(`${this.pagePath}/${id}`);
   }
 
   @step()

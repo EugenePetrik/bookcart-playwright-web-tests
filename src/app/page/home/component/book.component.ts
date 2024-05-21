@@ -11,6 +11,8 @@ export class Book extends Component {
     name: 'Add to Cart',
   });
 
+  private readonly addToWishListLocator = this.root.locator('app-addtowishlist');
+
   constructor(private root: Locator) {
     super(root.page());
   }
@@ -21,6 +23,7 @@ export class Book extends Component {
       await expect(this.titleLocator).toBeVisible(),
       await expect(this.priceLocator).toBeVisible(),
       await expect(this.addToCardLocator).toBeVisible(),
+      await expect(this.addToWishListLocator).toBeVisible(),
     ]);
   }
 
@@ -53,5 +56,11 @@ export class Book extends Component {
   async addToCart() {
     await this.expectLoaded();
     await this.addToCardLocator.click();
+  }
+
+  @step()
+  async addToWishList() {
+    await this.expectLoaded();
+    await this.addToWishListLocator.click();
   }
 }

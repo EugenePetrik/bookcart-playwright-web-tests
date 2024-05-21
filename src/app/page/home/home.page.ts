@@ -34,6 +34,12 @@ export class HomePage extends AppPage {
   }
 
   @step()
+  async addBookToWishList(title: string): Promise<void> {
+    const matchedFirstResult: Book = (await this.books.getBooks(title))[0];
+    await matchedFirstResult.addToWishList();
+  }
+
+  @step()
   async getBooksDetails(): Promise<Awaited<ReturnType<Book['details']>>[]> {
     return this.books.getBooksDetails();
   }
