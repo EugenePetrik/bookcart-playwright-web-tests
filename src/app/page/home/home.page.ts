@@ -43,4 +43,14 @@ export class HomePage extends AppPage {
   async getBooksDetails(): Promise<Awaited<ReturnType<Book['details']>>[]> {
     return this.books.getBooksDetails();
   }
+
+  @step()
+  async expectBooksFiltered(expectedBooks: string[]): Promise<void> {
+    const books = await this.books.getBooksDetails();
+    const titles = books.map(({ name }) => name);
+    expect(
+      titles,
+      `The actual list of filtered book titles - ${titles.join(', ')} does not match the expected list - ${expectedBooks.join(', ')}`,
+    ).toEqual(expectedBooks);
+  }
 }

@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 import { Component } from '../abstract.classes';
 import { step } from '../../utils/reporters/steps';
 
-type Category =
+export type Category =
   | 'All Categories'
   | 'Biography'
   | 'Fiction'

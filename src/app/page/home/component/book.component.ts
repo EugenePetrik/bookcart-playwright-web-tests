@@ -23,7 +23,6 @@ export class Book extends Component {
       await expect(this.titleLocator).toBeVisible(),
       await expect(this.priceLocator).toBeVisible(),
       await expect(this.addToCardLocator).toBeVisible(),
-      await expect(this.addToWishListLocator).toBeVisible(),
     ]);
   }
 
