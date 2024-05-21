@@ -6,3 +6,12 @@ export interface IRegisterUser {
   confirmPassword: string;
   gender: 'Male' | 'Female';
 }
+
+export interface ILoginResponse {
+  token: string;
+  userDetails: {
+    userId: string;
+    username: string;
+    userTypeId: string;
+  };
+}
