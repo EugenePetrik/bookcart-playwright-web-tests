@@ -39,19 +39,6 @@ export default defineConfig({
   },
 
   use: {
-    trace: {
-      mode: 'retain-on-failure',
-    },
-
-    screenshot: {
-      fullPage: true,
-      mode: 'only-on-failure',
-    },
-
-    video: {
-      mode: 'retain-on-failure',
-    },
-
     headless: !!process.env.CI,
 
     launchOptions: {
@@ -71,9 +58,32 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
         baseURL: baseConfig.WEB_URL,
+        trace: {
+          mode: 'retain-on-failure',
+        },
+        screenshot: {
+          fullPage: true,
+          mode: 'only-on-failure',
+        },
+        video: {
+          mode: 'retain-on-failure',
+        },
       },
       grep: [new RegExp('@ui')],
       testDir: join(process.cwd(), 'src', 'tests', 'web'),
+    },
+    {
+      name: 'accessibility',
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: baseConfig.WEB_URL,
+        screenshot: {
+          fullPage: true,
+          mode: 'only-on-failure',
+        },
+      },
+      grep: [new RegExp('@accessibility')],
+      testDir: join(process.cwd(), 'src', 'tests', 'accessibility'),
     },
   ],
 });

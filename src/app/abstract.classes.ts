@@ -1,4 +1,5 @@
 import { expect, type Page } from '@playwright/test';
+import { step } from '../utils/reporters/steps';
 
 export abstract class PageHolder {
   constructor(protected page: Page) {}
@@ -20,15 +21,18 @@ export abstract class Component extends PageHolder {
 export abstract class AppPage extends Component {
   public abstract pagePath: string;
 
+  @step()
   async open(path?: string): Promise<void> {
     await this.page.goto(path ?? this.pagePath);
     await this.expectLoaded();
   }
 
+  @step()
   async expectURL(url: string | RegExp): Promise<void> {
     await expect(this.page).toHaveURL(url);
   }
 
+  @step()
   async expectTitle(title: string | RegExp): Promise<void> {
     await expect(this.page).toHaveTitle(title);
   }

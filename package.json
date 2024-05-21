@@ -11,6 +11,7 @@
         "postinstall": "npx playwright install",
         "test": "cross-env ENV=qa npx playwright test",
         "test:ui": "npm t -- --project=chromium",
+        "test:accessibility": "npm t -- --project=accessibility",
         "report": "npx playwright show-report"
     },
     "keywords": [
@@ -20,6 +21,7 @@
     "author": "Yevhen Petryk",
     "license": "ISC",
     "devDependencies": {
+        "@axe-core/playwright": "^4.9.0",
         "@types/node": "^20.12.12",
         "@typescript-eslint/eslint-plugin": "^7.9.0",
         "@typescript-eslint/parser": "^7.9.0",
@@ -29,6 +31,8 @@
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-playwright": "^1.6.1",
         "eslint-plugin-prettier": "^5.1.3",
+        "lighthouse": "^9.6.8",
+        "playwright-lighthouse": "^2.2.2",
         "prettier": "^3.2.5",
         "rimraf": "^5.0.7",
         "typescript": "^5.4.5",
