@@ -5,7 +5,7 @@ import type { ILoginResponse } from '../../utils/types/user';
 export class LoginController extends RequestHolder {
   @step()
   async login(data: { username: string; password: string }): Promise<ILoginResponse> {
-    const response = await this.request.post(`${this.apiURL}/api/login`, {
+    const response = await this.request.post(`${this.apiURL}/login`, {
       data,
     });
 

@@ -40,10 +40,10 @@ class UserBuilder {
     return {
       firstName: this.user.firstName ?? faker.person.firstName(),
       lastName: this.user.lastName ?? faker.person.lastName(),
-      username: this.user.username ?? `username_${Date.now().toString()}`,
+      username: this.user.username ?? `user_${Date.now().toString()}`,
       password: this.user.password ?? 'Qwerty123',
       confirmPassword: this.user.confirmPassword ?? 'Qwerty123',
-      gender: this.user.gender ?? 'Male',
+      gender: this.user.gender ?? 'Female',
     };
   }
 }
