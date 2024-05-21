@@ -10,7 +10,7 @@
         "check-all": "npm run check-format && npm run check-lint",
         "postinstall": "npx playwright install",
         "test": "cross-env ENV=qa npx playwright test",
-        "test:ui": "npm t -- --project=chromium",
+        "test:ui": "npm t -- --project=e2e",
         "test:accessibility": "npm t -- --project=accessibility",
         "report": "npx playwright show-report"
     },

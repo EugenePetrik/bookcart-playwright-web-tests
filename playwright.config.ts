@@ -54,7 +54,7 @@ export default defineConfig({
 
   projects: [
     {
-      name: 'chromium',
+      name: 'e2e',
       use: {
         ...devices['Desktop Chrome'],
         baseURL: baseConfig.WEB_URL,
