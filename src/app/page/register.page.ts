@@ -41,12 +41,12 @@ export class RegisterPage extends AppPage {
 
   @step()
   async registerUser(user: IRegisterUser): Promise<void> {
-    const { firstName, lastName, userName, password, confirmPassword, gender } = user;
+    const { firstName, lastName, username, password, confirmPassword, gender } = user;
 
     await this.firstNameInput.fill(firstName);
     await this.lastNameInput.fill(lastName);
 
-    await this.enterUsername(userName);
+    await this.enterUsername(username);
 
     await this.passwordInput.fill(password);
     await this.confirmPasswordInput.fill(confirmPassword);
@@ -61,7 +61,10 @@ export class RegisterPage extends AppPage {
 
     await this.registerButton.click();
 
-    await test.info().attach('User data', { body: JSON.stringify(user, null, 4) });
+    await test.info().attach('Register user data', {
+      body: JSON.stringify(user, null, 4),
+      contentType: 'application/json',
+    });
   }
 
   @step()

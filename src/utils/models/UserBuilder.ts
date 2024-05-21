@@ -1,32 +1,38 @@
 import { faker } from '@faker-js/faker';
 import { type IRegisterUser } from '../types/user';
 
+type Gender = 'Male' | 'Female';
+
 class UserBuilder {
   private user: Partial<IRegisterUser> = {};
 
-  setFirstName(firstName: string): this {
-    this.user.firstName = firstName;
+  setFirstName(value: string): this {
+    this.user.firstName = value;
     return this;
   }
 
-  setLastName(lastName: string): this {
-    this.user.lastName = lastName;
+  setLastName(value: string): this {
+    this.user.lastName = value;
     return this;
   }
 
-  setUserName(userName: string): this {
-    this.user.userName = userName;
+  setUserName(value: string): this {
+    this.user.username = value;
     return this;
   }
 
-  setPassword(password: string): this {
-    this.user.password = password;
-    this.user.confirmPassword = password;
+  setPassword(value: string): this {
+    this.user.password = value;
     return this;
   }
 
-  setGender(gender: 'Male' | 'Female'): this {
-    this.user.gender = gender;
+  setConfirmPassword(value: string): this {
+    this.user.confirmPassword = value;
+    return this;
+  }
+
+  setGender(value: Gender): this {
+    this.user.gender = value;
     return this;
   }
 
@@ -34,7 +40,7 @@ class UserBuilder {
     return {
       firstName: this.user.firstName ?? faker.person.firstName(),
       lastName: this.user.lastName ?? faker.person.lastName(),
-      userName: this.user.userName ?? `username_${Date.now().toString()}`,
+      username: this.user.username ?? `username_${Date.now().toString()}`,
       password: this.user.password ?? 'Qwerty123',
       confirmPassword: this.user.confirmPassword ?? 'Qwerty123',
       gender: this.user.gender ?? 'Male',

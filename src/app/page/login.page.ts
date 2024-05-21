@@ -1,4 +1,4 @@
-import { expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import { AppPage } from '../abstract.classes';
 import baseConfig from '../../config/baseConfig';
 import { step } from '../../utils/reporters/steps';
@@ -50,10 +50,16 @@ export class LoginPage extends AppPage {
   }
 
   @step()
-  async loginUser(userData: IUser): Promise<void> {
-    const { username, password } = userData;
+  async loginUser(data: IUser): Promise<void> {
+    const { username, password } = data;
+
     await this.enterUsername(username);
     await this.enterPassword(password);
     await this.clickOnLogInButton();
+
+    await test.info().attach('Login user data', {
+      body: JSON.stringify(data, null, 4),
+      contentType: 'application/json',
+    });
   }
 }

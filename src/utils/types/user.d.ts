@@ -1,7 +1,7 @@
 export interface IRegisterUser {
   firstName: string;
   lastName: string;
-  userName: string;
+  username: string;
   password: string;
   confirmPassword: string;
   gender: 'Male' | 'Female';
