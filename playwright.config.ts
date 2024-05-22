@@ -70,20 +70,25 @@ export default defineConfig({
         },
       },
       grep: [new RegExp('@ui')],
-      testDir: join(process.cwd(), 'src', 'tests', 'web'),
+      testDir: join(process.cwd(), 'src', 'tests', 'e2e'),
     },
     {
       name: 'accessibility',
       use: {
         ...devices['Desktop Chrome'],
         baseURL: baseConfig.WEB_URL,
-        screenshot: {
-          fullPage: true,
-          mode: 'only-on-failure',
-        },
       },
       grep: [new RegExp('@accessibility')],
       testDir: join(process.cwd(), 'src', 'tests', 'accessibility'),
+    },
+    {
+      name: 'lighthouse',
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: baseConfig.WEB_URL,
+      },
+      grep: [new RegExp('@performance')],
+      testDir: join(process.cwd(), 'src', 'tests', 'lighthouse'),
     },
   ],
 });

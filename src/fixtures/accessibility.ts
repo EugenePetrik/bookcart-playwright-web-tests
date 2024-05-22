@@ -1,5 +1,4 @@
 import AxeBuilder from '@axe-core/playwright';
-import { expect } from '@playwright/test';
 import { baseFixture } from './base';
 
 export type TagsOption = {
@@ -18,5 +17,3 @@ export const accessibilityFixture = baseFixture.extend<AxeFixture & TagsOption>(
     await use(accessibilityBuilder);
   },
 });
-
-export { expect };

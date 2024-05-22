@@ -1,7 +1,7 @@
-import { accessibilityFixture, expect } from '../../fixtures';
+import { accessibilityFixture as test, expect } from '../../fixtures';
 import { attachAxeReport } from '../../utils/reporters/axe.reporter';
 
-accessibilityFixture(
+test(
   'Accessibility -> full page analyze',
   { tag: ['@accessibility'] },
   async ({ app, accessibility }, testInfo) => {
@@ -13,7 +13,7 @@ accessibilityFixture(
   },
 );
 
-accessibilityFixture(
+test(
   'Accessibility -> specific element analyze',
   { tag: ['@accessibility'] },
   async ({ app, accessibility }, testInfo) => {
@@ -25,7 +25,7 @@ accessibilityFixture(
   },
 );
 
-accessibilityFixture(
+test(
   'Accessibility -> exclude element to analyze',
   { tag: ['@accessibility'] },
   async ({ app, accessibility }, testInfo) => {
@@ -37,7 +37,7 @@ accessibilityFixture(
   },
 );
 
-accessibilityFixture(
+test(
   'Accessibility -> disable rules to analyze',
   { tag: ['@accessibility'] },
   async ({ app, accessibility }, testInfo) => {

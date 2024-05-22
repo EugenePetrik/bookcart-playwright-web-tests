@@ -10,7 +10,7 @@ import { join } from 'path';
 
 const console = new winston.transports.Console();
 
-const logger = winston.createLogger({
+export const logger = winston.createLogger({
   level: 'info',
   format: winston.format.json(),
   transports: [

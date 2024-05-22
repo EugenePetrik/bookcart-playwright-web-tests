@@ -12,6 +12,7 @@
         "test": "cross-env ENV=qa npx playwright test",
         "test:ui": "npm t -- --project=e2e",
         "test:accessibility": "npm t -- --project=accessibility",
+        "test:lighthouse": "npm t -- --project=lighthouse",
         "report": "npx playwright show-report"
     },
     "keywords": [
