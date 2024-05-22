@@ -24,6 +24,9 @@ export class Application extends PageHolder {
       userDetails: { userId },
     } = userData;
 
+    // Update the context in API
+    this.api.updateRequestContext(this.api.login.request);
+
     await this.setDataToLocalStorage(userId, token);
 
     await test.info().attach('Credentials used for headless login', {

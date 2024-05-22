@@ -21,7 +21,7 @@ export default defineConfig({
 
   retries: process.env.CI ? 2 : 0,
 
-  workers: process.env.CI ? 1 : undefined,
+  workers: process.env.CI ? 1 : 2,
 
   globalSetup: join(process.cwd(), 'src', 'tests', 'global-setup.ts'),
 

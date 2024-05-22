@@ -1,10 +1,23 @@
+import { APIRequestContext } from '@playwright/test';
 import { LoginController, UserController, BookController } from './controller';
-import { RequestHolder } from './request.holder';
 
-export class API extends RequestHolder {
-  public readonly login = new LoginController(this.request);
+export class API {
+  public login: LoginController;
 
-  public readonly user = new UserController(this.request);
+  public user: UserController;
 
-  public readonly book = new BookController(this.request);
+  public book: BookController;
+
+  constructor(request: APIRequestContext) {
+    this.login = new LoginController(request);
+    this.user = new UserController(request);
+    this.book = new BookController(request);
+  }
+
+  // To update the request context across all controllers
+  public updateRequestContext(request: APIRequestContext): void {
+    this.login.request = request;
+    this.user.request = request;
+    this.book.request = request;
+  }
 }

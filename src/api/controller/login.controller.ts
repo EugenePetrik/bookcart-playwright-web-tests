@@ -9,6 +9,12 @@ export class LoginController extends RequestHolder {
       data,
     });
 
-    return response.json() as Promise<ILoginResponse>;
+    const loginResponse = (await response.json()) as ILoginResponse;
+
+    if (loginResponse.token) {
+      await this.createAuthorizedContext(loginResponse.token);
+    }
+
+    return loginResponse;
   }
 }
