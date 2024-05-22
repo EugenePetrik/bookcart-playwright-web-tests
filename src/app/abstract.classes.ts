@@ -1,4 +1,4 @@
-import { expect, type Page } from '@playwright/test';
+import { type Locator, expect, type Page } from '@playwright/test';
 import { step } from '../utils/reporters/steps';
 
 export abstract class PageHolder {
@@ -28,12 +28,39 @@ export abstract class AppPage extends Component {
   }
 
   @step()
-  async expectURL(url: string | RegExp): Promise<void> {
+  async expectToHaveURL(url: string | RegExp): Promise<void> {
     await expect(this.page).toHaveURL(url);
   }
 
   @step()
-  async expectTitle(title: string | RegExp): Promise<void> {
+  async expectToHaveTitle(title: string | RegExp): Promise<void> {
     await expect(this.page).toHaveTitle(title);
+  }
+
+  @step()
+  async expectToHaveScreenshot(
+    fileName: string,
+    options: { fullPage?: boolean; maxDiffPixels?: number; mask?: Array<Locator> } = {},
+  ): Promise<void> {
+    const { fullPage = false, maxDiffPixels = 0.1, mask = [] } = options;
+
+    await expect(this.page).toHaveScreenshot(fileName, {
+      fullPage,
+      maxDiffPixels,
+      mask,
+    });
+  }
+
+  @step()
+  async expectToMatchSnapshot(
+    element: Locator,
+    fileName: string,
+    options: { maxDiffPixels?: number } = {},
+  ): Promise<void> {
+    const { maxDiffPixels = 0.1 } = options;
+
+    await expect(element).toHaveScreenshot(fileName, {
+      maxDiffPixels,
+    });
   }
 }

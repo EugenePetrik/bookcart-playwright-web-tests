@@ -90,5 +90,15 @@ export default defineConfig({
       grep: [new RegExp('@performance')],
       testDir: join(process.cwd(), 'src', 'tests', 'lighthouse'),
     },
+    {
+      name: 'visual',
+      use: {
+        ...devices['Desktop Chrome'],
+        viewport: { width: 1920, height: 1080 },
+        baseURL: baseConfig.WEB_URL,
+      },
+      grep: [new RegExp('@visual')],
+      testDir: join(process.cwd(), 'src', 'tests', 'visual'),
+    },
   ],
 });

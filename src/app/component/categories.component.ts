@@ -19,6 +19,7 @@ export class Categories extends Component {
   async expectLoaded(): Promise<void> {
     await Promise.all([
       await expect(this.root).toBeVisible(),
+      await expect(this.categories.first()).toBeVisible(),
       await expect(this.categories).not.toHaveCount(0),
     ]);
   }

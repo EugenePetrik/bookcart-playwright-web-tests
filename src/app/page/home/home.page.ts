@@ -1,4 +1,4 @@
-import { expect } from '@playwright/test';
+import { type Locator, expect } from '@playwright/test';
 import { AppPage } from '../../abstract.classes';
 import { Header, Categories } from '../../component';
 import { Books } from './component/books.component';
@@ -16,9 +16,14 @@ export class HomePage extends AppPage {
 
   private readonly bookList = this.page.locator('.card-deck-container');
 
+  get getBookList(): Locator {
+    return this.bookList;
+  }
+
   @step()
   async expectLoaded(): Promise<void> {
     await expect(this.bookList).toBeVisible();
+    await this.categories.expectLoaded();
   }
 
   @step()

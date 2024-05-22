@@ -10,6 +10,6 @@ test(
     const user = new UserBuilder().build();
     await app.registerPage.registerUser(user);
 
-    await app.loginPage.expectURL(/login/);
+    await app.loginPage.expectToHaveURL(/login/);
   },
 );
