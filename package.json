@@ -13,7 +13,7 @@
         "test:e2e": "npm run test -- --project=e2e",
         "test:e2e:debug": "PWDEBUG=1 npm run test -- --project=e2e",
         "test:e2e:debug:api": "DEBUG=pw:api npm run test -- --project=e2e",
-        "test:accessibility": "npm t -- --project=accessibility",
+        "test:a11y": "npm t -- --project=accessibility",
         "test:lighthouse": "npm t -- --project=lighthouse",
         "test:visual": "npm t -- --project=visual",
         "test:visual:update:snapshots": "npm run test:visual --update-snapshots",
