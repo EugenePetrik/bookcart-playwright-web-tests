@@ -26,14 +26,7 @@ export default defineConfig({
   globalSetup: join(process.cwd(), 'src', 'tests', 'global-setup.ts'),
 
   reporter: process.env.CI
-    ? [
-        [
-          'blob',
-          {
-            fileName: 'report.zip',
-          },
-        ],
-      ]
+    ? [['blob']]
     : [
         ['list', { printSteps: false }],
         ['html', { open: 'never' }],
