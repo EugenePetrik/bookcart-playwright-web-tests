@@ -19,9 +19,9 @@ export default defineConfig({
 
   maxFailures: process.env.CI ? 5 : 10,
 
-  retries: process.env.CI ? 2 : 0,
+  retries: process.env.CI ? 1 : 0,
 
-  workers: process.env.CI ? 1 : 2,
+  workers: process.env.CI ? 2 : 1,
 
   globalSetup: join(process.cwd(), 'src', 'tests', 'global-setup.ts'),
 
