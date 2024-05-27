@@ -1,0 +1,68 @@
+name: Playwright All Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      deployment_target:
+        description: Choose suite
+        required: true
+        default: e2e
+        type: choice
+        options:
+          - e2e
+          - a11y
+          - lighthouse
+          - visual
+
+jobs:
+  lint:
+    name: Run Linters
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run check-all
+
+  playwright-tests:
+    name: Run Tests
+    needs: [lint]
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    env:
+      WEB_URL: https://bookcart.azurewebsites.net
+      API_URL: https://bookcart.azurewebsites.net/api
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+      - name: Install NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright E2E tests
+        if: github.event.inputs.deployment_target == 'e2e'
+        run: xvfb-run cross-env ENV=qa npx playwright test -- --project=e2e
+      - name: Run Playwright Lighthouse tests
+        if: github.event.inputs.deployment_target == 'lighthouse'
+        run: xvfb-run cross-env ENV=qa npx playwright test -- --project=lighthouse
+      - name: Run Playwright a11y tests
+        if: github.event.inputs.deployment_target == 'a11y'
+        run: xvfb-run cross-env ENV=qa npx playwright test -- --project=a11y
+      - name: Run Playwright visual tests
+        if: github.event.inputs.deployment_target == 'visual'
+        run: xvfb-run cross-env ENV=qa npx playwright test -- --project=visual
+      - name: Upload report to GitHub Actions Artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Report
+          path: playwright-report/
+          retention-days: 3
