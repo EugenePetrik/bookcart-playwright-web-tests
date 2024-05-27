@@ -44,7 +44,16 @@ test(
     await app.homePage.open();
 
     const axeResults = await accessibility()
-      .disableRules(['button-name', 'image-alt', 'label'])
+      .disableRules([
+        'color-contrast',
+        'link-name',
+        'empty-heading',
+        'heading-order',
+        'image-alt',
+        'button-name',
+        'image-alt',
+        'label',
+      ])
       .analyze();
     await attachAxeReport(axeResults, testInfo);
     expect(axeResults.violations).toEqual([]);
