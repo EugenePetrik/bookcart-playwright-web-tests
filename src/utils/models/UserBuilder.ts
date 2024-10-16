@@ -3,7 +3,7 @@ import { type IRegisterUser } from '../types/user';
 
 type Gender = 'Male' | 'Female';
 
-class UserBuilder {
+export class UserBuilder {
   private user: Partial<IRegisterUser> = {};
 
   setFirstName(value: string): this {
@@ -40,12 +40,10 @@ class UserBuilder {
     return {
       firstName: this.user.firstName ?? faker.person.firstName(),
       lastName: this.user.lastName ?? faker.person.lastName(),
-      username: this.user.username ?? `user_${Date.now().toString()}`,
+      username: this.user.username ?? `user_${faker.number.int(10_000)}`,
       password: this.user.password ?? 'Qwerty123',
       confirmPassword: this.user.confirmPassword ?? 'Qwerty123',
       gender: this.user.gender ?? 'Female',
     };
   }
 }
-
-export default UserBuilder;

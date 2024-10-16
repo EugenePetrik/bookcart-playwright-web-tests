@@ -2,17 +2,13 @@ import { APIRequestContext } from '@playwright/test';
 import { LoginController, UserController, BookController } from './controller';
 
 export class API {
-  public login: LoginController;
+  public login: LoginController = new LoginController(this.request);
 
-  public user: UserController;
+  public user: UserController = new UserController(this.request);
 
-  public book: BookController;
+  public book: BookController = new BookController(this.request);
 
-  constructor(request: APIRequestContext) {
-    this.login = new LoginController(request);
-    this.user = new UserController(request);
-    this.book = new BookController(request);
-  }
+  constructor(public request: APIRequestContext) {}
 
   // To update the request context across all controllers
   public updateRequestContext(request: APIRequestContext): void {

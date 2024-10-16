@@ -3,7 +3,7 @@ import { Application } from '../app';
 import { getUser } from '../utils/getUser';
 import { baseFixture } from './base';
 import type { IRegisterUser, ILoginResponse } from '../utils/types/user';
-import UserBuilder from '../utils/models/UserBuilder';
+import { UserBuilder } from '../utils/models/UserBuilder';
 
 export type DefaultUserOption = {
   defaultUser: {

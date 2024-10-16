@@ -1,5 +1,5 @@
 import { baseFixture as test } from '../../fixtures';
-import UserBuilder from '../../utils/models/UserBuilder';
+import { UserBuilder } from '../../utils/models/UserBuilder';
 
 test(
   'user should be able to registered successfully',
