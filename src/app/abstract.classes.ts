@@ -40,7 +40,7 @@ export abstract class AppPage extends Component {
   @step()
   async expectToHaveScreenshot(
     fileName: string,
-    options: { fullPage?: boolean; maxDiffPixels?: number; mask?: Array<Locator> } = {},
+    options: { fullPage?: boolean; maxDiffPixels?: number; mask?: Locator[] } = {},
   ): Promise<void> {
     const { fullPage = false, maxDiffPixels = 0.1, mask = [] } = options;
 

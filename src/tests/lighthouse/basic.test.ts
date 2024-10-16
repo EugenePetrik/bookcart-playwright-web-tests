@@ -16,7 +16,6 @@ import {
     reportName,
   }) => {
     test(
-      // eslint-disable-next-line playwright/no-conditional-in-test
       `Lighthouse verification for ${pageName} on ${isMobile ? 'mobile' : 'desktop'}`,
       { tag: ['@performance'] },
       async ({ app, page, attachReport }) => {

@@ -1,12 +1,12 @@
 import type { Reporter, TestCase, TestResult, TestStep } from '@playwright/test/reporter';
 
 class SlowStepReporter implements Reporter {
-  private steps: Array<{
+  private steps: {
     count: number;
     name: string;
     location: string | undefined;
     duration: number;
-  }> = [];
+  }[] = [];
 
   onStepEnd(test: TestCase, result: TestResult, step: TestStep) {
     if (step.category === 'test.step') {

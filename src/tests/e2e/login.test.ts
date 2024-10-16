@@ -2,7 +2,7 @@ import { baseFixture as test } from '../../fixtures';
 import { getUser } from '../../utils/getUser';
 import type { IUsersConfig } from '../../test_data/users';
 
-const loginTestData: Array<{ user: string; title: string }> = [
+const loginTestData: { user: string; title: string }[] = [
   {
     user: 'admin_user',
     title: 'admin user should be able to log in successfully',

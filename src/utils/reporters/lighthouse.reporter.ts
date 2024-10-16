@@ -16,7 +16,6 @@ export const lighthouseResults = async (options: {
     options;
 
   await playAudit({
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     config: isMobile ? undefined : lighthouseDesktopConfig,
     page,
     thresholds: {

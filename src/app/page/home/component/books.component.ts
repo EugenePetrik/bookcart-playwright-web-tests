@@ -20,7 +20,7 @@ export class Books extends Component {
     const books = await this.booksLocator.all();
     const filtered = [];
 
-    // eslint-disable-next-line no-restricted-syntax
+     
     for await (const book of books) {
       if ((await new Book(book).title()) === title) {
         filtered.push(book);
@@ -36,7 +36,7 @@ export class Books extends Component {
     const books = await this.booksLocator.all();
     const details = [];
 
-    // eslint-disable-next-line no-restricted-syntax
+     
     for await (const book of books) {
       details.push(await new Book(book).details());
     }
