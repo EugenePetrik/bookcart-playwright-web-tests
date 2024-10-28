@@ -20,8 +20,7 @@ export class Books extends Component {
     const books = await this.booksLocator.all();
     const filtered = [];
 
-     
-    for await (const book of books) {
+    for (const book of books) {
       if ((await new Book(book).title()) === title) {
         filtered.push(book);
       }
@@ -36,8 +35,7 @@ export class Books extends Component {
     const books = await this.booksLocator.all();
     const details = [];
 
-     
-    for await (const book of books) {
+    for (const book of books) {
       details.push(await new Book(book).details());
     }
 

@@ -26,10 +26,8 @@ export function step<This, Args extends any[], Return>(message?: string) {
   ) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function replacementMethod(this: any, ...args: Args) {
-       
       const name = message ?? `${this.constructor.name}.${context.name as string}`;
 
-       
       return test.step(name, async () => target.call(this, ...args), { box: true });
     }
 
